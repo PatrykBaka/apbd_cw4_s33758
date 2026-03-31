@@ -117,7 +117,8 @@ public sealed class ZadaniaLinq
     /// </summary>
     public IEnumerable<string> Zadanie07_LiczbaAktywnychZapisow()
     {
-        throw Niezaimplementowano(nameof(Zadanie07_LiczbaAktywnychZapisow));
+        var count = DaneUczelni.Zapisy.Count(s => s.CzyAktywny);
+        return [$"{count}"];
     }
 
     /// <summary>
@@ -131,7 +132,7 @@ public sealed class ZadaniaLinq
     /// </summary>
     public IEnumerable<string> Zadanie08_UnikalneMiastaStudentow()
     {
-        throw Niezaimplementowano(nameof(Zadanie08_UnikalneMiastaStudentow));
+        return DaneUczelni.Studenci.Select(s => $"{s.Miasto}").OrderBy(s => s).Distinct();
     }
 
     /// <summary>
@@ -146,7 +147,7 @@ public sealed class ZadaniaLinq
     /// </summary>
     public IEnumerable<string> Zadanie09_TrzyNajnowszeZapisy()
     {
-        throw Niezaimplementowano(nameof(Zadanie09_TrzyNajnowszeZapisy));
+        return DaneUczelni.Zapisy.OrderByDescending(s => s.DataZapisu).Take(3).Select(s => $"{s.DataZapisu} {s.StudentId} {s.PrzedmiotId}");
     }
 
     /// <summary>
