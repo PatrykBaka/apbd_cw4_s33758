@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\User\\Desktop\\LinqConsoleLab.PL\\LinqConsoleLab.PL.csproj": {}
+    "C:\\Users\\baka\\Desktop\\apbd_cw4_s33758\\LinqConsoleLab.PL.csproj": {}
   },
   "projects": {
-    "C:\\Users\\User\\Desktop\\LinqConsoleLab.PL\\LinqConsoleLab.PL.csproj": {
+    "C:\\Users\\baka\\Desktop\\apbd_cw4_s33758\\LinqConsoleLab.PL.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\User\\Desktop\\LinqConsoleLab.PL\\LinqConsoleLab.PL.csproj",
+        "projectUniqueName": "C:\\Users\\baka\\Desktop\\apbd_cw4_s33758\\LinqConsoleLab.PL.csproj",
         "projectName": "LinqConsoleLab.PL",
-        "projectPath": "C:\\Users\\User\\Desktop\\LinqConsoleLab.PL\\LinqConsoleLab.PL.csproj",
-        "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\User\\Desktop\\LinqConsoleLab.PL\\obj\\",
+        "projectPath": "C:\\Users\\baka\\Desktop\\apbd_cw4_s33758\\LinqConsoleLab.PL.csproj",
+        "packagesPath": "C:\\Users\\baka\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\baka\\Desktop\\apbd_cw4_s33758\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\baka\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net9.0"
@@ -38,7 +38,7 @@
           "auditLevel": "low",
           "auditMode": "direct"
         },
-        "SdkAnalysisLevel": "10.0.200"
+        "SdkAnalysisLevel": "9.0.300"
       },
       "frameworks": {
         "net9.0": {
@@ -54,30 +54,12 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "downloadDependencies": [
-            {
-              "name": "Microsoft.AspNetCore.App.Ref",
-              "version": "[9.0.14, 9.0.14]"
-            },
-            {
-              "name": "Microsoft.NETCore.App.Host.win-x64",
-              "version": "[9.0.14, 9.0.14]"
-            },
-            {
-              "name": "Microsoft.NETCore.App.Ref",
-              "version": "[9.0.14, 9.0.14]"
-            },
-            {
-              "name": "Microsoft.WindowsDesktop.App.Ref",
-              "version": "[9.0.14, 9.0.14]"
-            }
-          ],
           "frameworkReferences": {
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.201/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.312/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

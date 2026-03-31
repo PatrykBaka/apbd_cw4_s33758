@@ -63,7 +63,15 @@ public sealed class ZadaniaLinq
     /// </summary>
     public IEnumerable<string> Zadanie04_PierwszyPrzedmiotAnalityczny()
     {
-        throw Niezaimplementowano(nameof(Zadanie04_PierwszyPrzedmiotAnalityczny));
+        var przedmiot = DaneUczelni.Przedmioty
+            .FirstOrDefault(p => p.Kategoria == "Analytics");
+        
+        if (przedmiot == null)
+        {
+            return ["Nie znaleziono przedmiotu"];
+        }
+
+        return [$"{przedmiot.Nazwa} {przedmiot.DataStartu}"];
     }
 
     /// <summary>
