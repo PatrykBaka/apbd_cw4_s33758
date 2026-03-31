@@ -178,7 +178,8 @@ public sealed class ZadaniaLinq
     /// </summary>
     public IEnumerable<string> Zadanie11_PolaczStudentowIZapisy()
     {
-        throw Niezaimplementowano(nameof(Zadanie11_PolaczStudentowIZapisy));
+        return DaneUczelni.Studenci.Join(DaneUczelni.Zapisy, s => s.Id, z => z.StudentId,
+            (s, z) => $"{s.Imie} {s.Nazwisko} {z.DataZapisu}");
     }
 
     /// <summary>
@@ -194,7 +195,10 @@ public sealed class ZadaniaLinq
     /// </summary>
     public IEnumerable<string> Zadanie12_ParyStudentPrzedmiot()
     {
-        throw Niezaimplementowano(nameof(Zadanie12_ParyStudentPrzedmiot));
+        return DaneUczelni.Zapisy.Join(DaneUczelni.Studenci, z => z.StudentId, s => s.Id,
+                (z, s) => new { Zapis = z, Student = s })
+            .Join(DaneUczelni.Przedmioty, z => z.Zapis.PrzedmiotId, p => p.Id,
+                (z, p) => $"{z.Student.Imie} {z.Student.Nazwisko} {p.Nazwa}");
     }
 
     /// <summary>
