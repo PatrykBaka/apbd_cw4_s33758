@@ -326,7 +326,12 @@ public sealed class ZadaniaLinq
     /// </summary>
     public IEnumerable<string> Wyzwanie02_PrzedmiotyStartujaceWKwietniuBezOcenKoncowych()
     {
-        throw Niezaimplementowano(nameof(Wyzwanie02_PrzedmiotyStartujaceWKwietniuBezOcenKoncowych));
+        return DaneUczelni.Przedmioty.Where(p => DaneUczelni.Zapisy.Any(z => 
+                z.PrzedmiotId == p.Id && 
+                z.DataZapisu.Month == 4 && 
+                z.DataZapisu.Year == 2026 &&
+                z.OcenaKoncowa == null))
+            .Select(p => p.Nazwa);
     }
 
     /// <summary>
@@ -344,7 +349,19 @@ public sealed class ZadaniaLinq
     /// </summary>
     public IEnumerable<string> Wyzwanie03_ProwadzacyISredniaOcenNaIchPrzedmiotach()
     {
-        throw Niezaimplementowano(nameof(Wyzwanie03_ProwadzacyISredniaOcenNaIchPrzedmiotach));
+        return DaneUczelni.Prowadzacy.Select(pr =>
+        {
+            
+            var idPrzedmiotow = DaneUczelni.Przedmioty
+                .Where(p => p.ProwadzacyId == pr.Id)
+                .Select(p => p.Id);
+            
+            var srednia = DaneUczelni.Zapisy
+                .Where(z => idPrzedmiotow.Contains(z.PrzedmiotId) && z.OcenaKoncowa.HasValue)
+                .Average(z => z.OcenaKoncowa);
+            
+            return $"{pr.Imie} {pr.Nazwisko}: {srednia}";
+        });
     }
 
     /// <summary>
@@ -362,7 +379,12 @@ public sealed class ZadaniaLinq
     /// </summary>
     public IEnumerable<string> Wyzwanie04_MiastaILiczbaAktywnychZapisow()
     {
-        throw Niezaimplementowano(nameof(Wyzwanie04_MiastaILiczbaAktywnychZapisow));
+        return DaneUczelni.Studenci.Join(DaneUczelni.Zapisy, s => s.Id, z => z.StudentId, (s, z) => new { s.Miasto, z.CzyAktywny })
+            .Where(x => x.CzyAktywny)
+            .GroupBy(x => x.Miasto)
+            .Select(g => new { Miasto = g.Key, Liczba = g.Count() })
+            .OrderByDescending(x => x.Liczba)
+            .Select(x => $"{x.Miasto}: {x.Liczba}");
     }
 
     private static NotImplementedException Niezaimplementowano(string nazwaMetody)
