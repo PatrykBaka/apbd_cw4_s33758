@@ -250,7 +250,12 @@ public sealed class ZadaniaLinq
     /// </summary>
     public IEnumerable<string> Zadanie15_ProwadzacyILiczbaPrzedmiotow()
     {
-        throw Niezaimplementowano(nameof(Zadanie15_ProwadzacyILiczbaPrzedmiotow));
+        return DaneUczelni.Prowadzacy.Select(pr =>
+        {
+            var count = DaneUczelni.Przedmioty.Count(p => p.ProwadzacyId == pr.Id);
+
+            return $"{pr.Imie} {pr.Nazwisko} {count}";
+        });
     }
 
     /// <summary>
@@ -267,7 +272,18 @@ public sealed class ZadaniaLinq
     /// </summary>
     public IEnumerable<string> Zadanie16_NajwyzszaOcenaKazdegoStudenta()
     {
-        throw Niezaimplementowano(nameof(Zadanie16_NajwyzszaOcenaKazdegoStudenta));
+        return DaneUczelni.Studenci
+            .Select(s =>
+            {
+                
+                var max = DaneUczelni.Zapisy.Where(z => z.StudentId == s.Id && z.OcenaKoncowa.HasValue)
+                    .Select(z => z.OcenaKoncowa.Value)
+                    .DefaultIfEmpty(0)
+                    .Max();
+
+                return $"{s.Imie} {s.Nazwisko} {max}";
+
+            });
     }
 
     /// <summary>
@@ -285,7 +301,15 @@ public sealed class ZadaniaLinq
     /// </summary>
     public IEnumerable<string> Wyzwanie01_StudenciZWiecejNizJednymAktywnymPrzedmiotem()
     {
-        throw Niezaimplementowano(nameof(Wyzwanie01_StudenciZWiecejNizJednymAktywnymPrzedmiotem));
+        return DaneUczelni.Studenci.Select(s => new
+        {
+
+            count = DaneUczelni.Zapisy.Count(z => z.StudentId == s.Id && z.CzyAktywny),
+
+            nazwa = $"{s.Imie} {s.Nazwisko}"
+
+        }).Where(x => x.count > 1)
+            .Select(x => $"{x.nazwa} {x.count}");
     }
 
     /// <summary>
